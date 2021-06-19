@@ -1,30 +1,61 @@
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script type = "text/javascript">
-            function onButtonPressed() {
-                replaceText()
-            }
 
-            function replaceText() {
-                document.getElementById("status").innerHTML = "Hej!"
-            }
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        function onButtonPressed() {
+            let kadPengenalan = document.getElementById('identification').value
+            let adakahBergejala = document.getElementById('saringan-gejala-ya').checked
+            let hubunganRapat = document.getElementById('hubungan-ya').checked
 
-        </script>
-    </head>
-    <body>
-        Hi, welcome.
-        <div id="status">
-            Adakah anda sihat?
-        </div>
-        <div>
-            Adakah anda mempunyai sebarang gejala?
-        </div>
-        <div>
-            <button onclick="onButtonPressed()">Tekan untuk masuk.</button>
-            
-        </div>
+            console.log('Kad Pengenalan: ' + kadPengenalan)
+            console.log('Bergejala: ' + adakahBergejala)
+            console.log('Hubungan Rapat:' + hubunganRapat)
+            replaceText(kadPengenalan, adakahBergejala, hubunganRapat)
+        }
+
+        function replaceText(pengenalan, bergejala, hubungan) {
+            document.getElementById("pengakuan").innerHTML = "Selamat Datang<br>" + 
+            pengenalan + "<br>" 
+            + "Bergejala: " + (bergejala ?  "Ya" : "Tidak" ) + "<br>"
+            + "Hubungan Rapat: " + (hubungan ?  "Ya" : "Tidak" )
+        }
+
+    </script>
+</head>
+
+<body>
+    Selamat Datang
+    
+
+    <div id="pengakuan">
+        <form>
+            Nombor pengenalan/passport:
+            <br>
+            <input type="text" id="identification" name="identification" value="" placeholder="e.g. 732211234455">
+            <br>
+            Adakah anda bergejala?
+            <br>
+            <input type="radio" id="saringan-gejala-ya" name="saringan-gejala" value=true>
+            <label for="gejala-ya">Ya</label>
+            <br>
+            <input type="radio" id="saringan-gejala-tidak" name="saringan-gejala" value=false>
+            <label for="gejala-tidak">Tidak</label>
+            <br>
+            Adakah anda mempunyai hubungan dengan COVID-19?
+            <br>
+            <input type="radio" id="hubungan-ya" name="semak-hubungan" value="ya">
+            <label for="hubungan-ya">Ya</label>
+            <br>
+            <input type="radio" id="hubungan-tidak" name="semak-hubungan" value="tidak">
+            <label for="hubungan-tidak">Tidak</label>
+        </form>
+
+        <button onclick="onButtonPressed()">Tekan untuk masuk.</button>
+
+    </div>
 
 
-    </body>
+</body>
+
 </html>
