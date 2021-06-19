@@ -3,15 +3,31 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
-        function onButtonPressed() {
-            let kadPengenalan = document.getElementById('identification').value
-            let adakahBergejala = document.getElementById('saringan-gejala-ya').checked
-            let hubunganRapat = document.getElementById('hubungan-ya').checked
 
-            console.log('Kad Pengenalan: ' + kadPengenalan)
-            console.log('Bergejala: ' + adakahBergejala)
-            console.log('Hubungan Rapat:' + hubunganRapat)
-            replaceText(kadPengenalan, adakahBergejala, hubunganRapat)
+        function onButtonPressed() {
+            let pengenalan = document.getElementById('identification').value
+            let bergejala = document.getElementById('saringan-gejala-ya').checked
+            let hubungan = document.getElementById('hubungan-ya').checked
+
+            makeCall(pengenalan, bergejala, hubungan)
+        }
+
+        function makeCall(pengenalan, bergejala, hubungan) {
+            let request = new XMLHttpRequest()
+            request.open("GET", "h")
+            request.send()
+            request.onload = () => {
+                if (request.status == 200) {
+                    console.log("Success !")
+                    replaceText(pengenalan, bergejala, hubungan)
+                } else {
+                    tunjukGagal()
+                }
+            }
+            request.onerror = (error) => {
+                tunjukGagal()
+                console.log("Error " + error)
+            }
         }
 
         function replaceText(pengenalan, bergejala, hubungan) {
@@ -21,12 +37,19 @@
             + "Hubungan Rapat: " + (hubungan ?  "Ya" : "Tidak" )
         }
 
+        function showLoading() {
+            document.getElementById("pengakuan").innerHTML = "Sabar ye pak."
+        }
+
+        function tunjukGagal() {
+            document.getElementById("pengakuan").innerHTML = "Gagal semak masuk!"
+        }
+
     </script>
 </head>
 
 <body>
     Selamat Datang
-    
 
     <div id="pengakuan">
         <form>
