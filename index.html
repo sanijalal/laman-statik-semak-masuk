@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type = "text/javascript">
+            function onButtonPressed() {
+                replaceText()
+            }
+
+            function replaceText() {
+                document.getElementById("status").innerHTML = "Hej!"
+            }
+
+        </script>
+    </head>
+    <body>
+        Hi, welcome.
+        <div id="status">
+            Adakah anda sihat?
+        </div>
+        <div>
+            Adakah anda mempunyai sebarang gejala?
+        </div>
+        <div>
+            <button onclick="onButtonPressed()">Tekan untuk masuk.</button>
+            
+        </div>
+
+
+    </body>
+</html>
